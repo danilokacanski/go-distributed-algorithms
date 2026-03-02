@@ -24,7 +24,7 @@ import (
 
 func main() {
 	fmt.Println("================================================================")
-	fmt.Println("  DA Week 2-3: Basic Abstractions - Teaching Simulator")
+	fmt.Println("  DA Week 2-3: Basic Abstractions")
 	fmt.Println("  Based on: Cachin, Guerraoui, Rodrigues (Chapter 2)")
 	fmt.Println("================================================================")
 	fmt.Println()

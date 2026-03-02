@@ -1,4 +1,4 @@
-# Week 2-3: Basic Abstractions — Teaching Simulator
+# Week 2-3: Basic Abstractions
 
 A single-threaded, deterministic simulator for the foundational abstractions
 of distributed computing, based on **Chapter 2** of:
@@ -41,7 +41,7 @@ comes from `math/rand` with an explicit seed, making every execution
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    Runtime Scheduler                 │
+│                    Runtime Scheduler                │
 │                                                     │
 │  1. Pick random message from queue                  │
 │  2. Apply failure model (crash? omission?)          │
