@@ -9,9 +9,10 @@ import "context"
 // Process represents a participant in a distributed computation.
 //
 // PARALLEL VERSION:
-//   Instead of the synchronous Handle(msg) []Message interface,
-//   each process runs as a long-lived goroutine. It reads messages
-//   from its inbox channel and sends outgoing messages via a send function.
+//
+//	Instead of the synchronous Handle(msg) []Message interface,
+//	each process runs as a long-lived goroutine. It reads messages
+//	from its inbox channel and sends outgoing messages via a send function.
 //
 // From Cachin et al., Section 2.1:
 //

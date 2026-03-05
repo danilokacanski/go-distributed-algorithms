@@ -13,7 +13,8 @@ import (
 // ByzantineFailure models Byzantine (arbitrary) process failures.
 //
 // From Cachin et al., Section 2.2:
-//   A Byzantine process may deviate ARBITRARILY from its algorithm.
+//
+//	A Byzantine process may deviate ARBITRARILY from its algorithm.
 //
 // PARALLEL VERSION: Uses sync.RWMutex for concurrent access.
 // The alterFunc no longer takes *rand.Rand.

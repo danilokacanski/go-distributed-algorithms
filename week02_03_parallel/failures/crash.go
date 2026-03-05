@@ -40,10 +40,10 @@ type NoFailure struct{}
 
 func NewNoFailure() *NoFailure { return &NoFailure{} }
 
-func (f *NoFailure) IsAlive(pid process.ProcessID) bool                             { return true }
-func (f *NoFailure) ShouldDeliver(msg process.Message) bool                         { return true }
-func (f *NoFailure) CrashProcess(pid process.ProcessID)                             {}
-func (f *NoFailure) RecoverProcess(pid process.ProcessID)                           {}
+func (f *NoFailure) IsAlive(pid process.ProcessID) bool     { return true }
+func (f *NoFailure) ShouldDeliver(msg process.Message) bool { return true }
+func (f *NoFailure) CrashProcess(pid process.ProcessID)     {}
+func (f *NoFailure) RecoverProcess(pid process.ProcessID)   {}
 func (f *NoFailure) MaybeAlter(_ process.ProcessID, msgs []process.Message) []process.Message {
 	return msgs
 }
@@ -55,8 +55,9 @@ func (f *NoFailure) MaybeAlter(_ process.ProcessID, msgs []process.Message) []pr
 // CrashFailure models the crash-stop failure model.
 //
 // From Cachin et al., Section 2.2.1:
-//   A crashed process STOPS permanently (no recovery).
-//   A crashed process does not send or receive messages.
+//
+//	A crashed process STOPS permanently (no recovery).
+//	A crashed process does not send or receive messages.
 //
 // PARALLEL VERSION: Uses sync.RWMutex for concurrent reads.
 type CrashFailure struct {
