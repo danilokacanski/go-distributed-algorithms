@@ -1,4 +1,4 @@
-# Week 2-3: Basic Abstractions
+# Week 3-4: Basic Abstractions
 
 A single-threaded, deterministic simulator for the foundational abstractions
 of distributed computing, based on **Chapter 2** of:
@@ -21,7 +21,7 @@ This codebase teaches the core building blocks of every distributed algorithm:
 ## Quick Start
 
 ```bash
-cd week0203_basic_abstractions
+cd week03_04_basic_abstractions
 go run .
 ```
 
@@ -92,9 +92,9 @@ type Process interface {
 Links form a composition hierarchy, where each level adds guarantees:
 
 ```
-Unreliable → Fair-Loss → Stubborn → Perfect → Authenticated
-    ↑            ↑           ↑          ↑           ↑
- (baseline)   FLL1-3     SL1-2      PL1-3        AL1
+Fair-Loss → Stubborn → Perfect → Authenticated
+    ↑           ↑          ↑           ↑
+   FLL1-3     SL1-2      PL1-3        AL1
 ```
 
 | Link | Key Property | Mechanism |
@@ -153,7 +153,7 @@ Our simulator models this with **random scheduling**:
 ## File Structure
 
 ```
-week0203_basic_abstractions/
+week03_04_basic_abstractions/
 ├── main.go                    # Entry point — runs all examples
 ├── go.mod                     # Module definition
 ├── README.md                  # This file
@@ -166,8 +166,7 @@ week0203_basic_abstractions/
 │   ├── mac.go                 # HMAC-SHA256
 │   └── signature.go           # Simplified digital signatures
 ├── link/
-│   ├── unreliable.go          # Link interface + unreliable baseline
-│   ├── fairloss.go            # Fair-Loss Link (FLL1-3)
+│   ├── fairloss.go            # Link interface + Fair-Loss Link (FLL1-3)
 │   ├── stubborn.go            # Stubborn Link (SL1-2, Algorithm 2.1)
 │   ├── perfect.go             # Perfect Link (PL1-3, Algorithm 2.2)
 │   └── authenticated.go       # Authenticated Perfect Link (AL1)
@@ -196,9 +195,9 @@ week0203_basic_abstractions/
 
 ## Course Context
 
-This simulator covers **Weeks 2-3** of the Distributed Algorithms course:
-- Week 2: Process, link, and failure abstractions
-- Week 3: Cryptographic primitives and authenticated communication
+This simulator covers **Weeks 3-4** of the Distributed Algorithms course:
+- Week 3: Process, link, and failure abstractions
+- Week 4: Cryptographic primitives and authenticated communication
 
 The abstractions implemented here are the **foundation** for all subsequent
 algorithms in the course (consensus, broadcast, replication, etc.).

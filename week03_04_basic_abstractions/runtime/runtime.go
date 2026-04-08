@@ -27,9 +27,9 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/failures"
-	"github.com/danilokacanski/da/week0203_basic_abstractions/link"
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/failures"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/link"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // ============================================================================

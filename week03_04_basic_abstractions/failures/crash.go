@@ -7,9 +7,10 @@
 //
 // Failure models (from weakest to strongest):
 //
+//  0. NO FAILURE: All processes are correct.
 //  1. CRASH-STOP: A process halts and never recovers.
 //  2. OMISSION: A process may silently drop messages.
-//  3. CRASH-RECOVERY: A process crashes but may restart (with state loss).
+//  3. CRASH-RECOVERY: A process crashes but may restart (with state loss) which is not implemented in this simulator.
 //  4. BYZANTINE: A process may behave arbitrarily (maliciously).
 //
 // Each model is implemented as a FailureInjector that the runtime uses
@@ -19,7 +20,7 @@ package failures
 import (
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // FailureInjector controls process failures in the simulation.
@@ -77,7 +78,6 @@ func (f *NoFailure) MaybeAlter(from process.ProcessID, msgs []process.Message, r
 // Properties:
 //   - A crashed process STOPS permanently (no recovery).
 //   - A crashed process does not send or receive messages.
-//   - A process that never crashes is called CORRECT.
 //
 // This is the simplest and most commonly assumed failure model.
 type CrashFailure struct {

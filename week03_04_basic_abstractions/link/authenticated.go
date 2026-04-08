@@ -3,8 +3,8 @@ package link
 import (
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/crypto"
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/crypto"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // ============================================================================
@@ -84,12 +84,12 @@ func (l *AuthenticatedLink) Receive(msg process.Message) (process.Message, bool)
 		return msg, false // Duplicate — already delivered
 	}
 
-	// Second: verify MAC
+	// Second: verify if MAC exists
 	tag, exists := msg.Meta["mac"].(string)
 	if !exists {
 		return msg, false // No MAC — reject (possible forgery)
 	}
-
+	// Third: verify MAC using sender's key
 	content := msg.ContentString()
 	valid := l.keys.Verify(string(msg.From), []byte(content), tag)
 	if !valid {

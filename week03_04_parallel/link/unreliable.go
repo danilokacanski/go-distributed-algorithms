@@ -14,7 +14,7 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/danilokacanski/da/week0203_parallel/process"
+	"github.com/danilokacanski/da/week03_04_parallel/process"
 )
 
 // Link is the interface for all communication link abstractions.

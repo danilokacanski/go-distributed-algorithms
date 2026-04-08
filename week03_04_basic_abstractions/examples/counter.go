@@ -3,19 +3,19 @@ package examples
 import (
 	"fmt"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/failures"
-	"github.com/danilokacanski/da/week0203_basic_abstractions/link"
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
-	simrt "github.com/danilokacanski/da/week0203_basic_abstractions/runtime"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/failures"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/link"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
+	simrt "github.com/danilokacanski/da/week03_04_basic_abstractions/runtime"
 )
 
 // ============================================================================
-// COUNTER EXAMPLE — Message Loss with Unreliable Links
+// COUNTER EXAMPLE — Message Loss with Fair-Loss Links
 // ============================================================================
 
 // This example demonstrates:
 //   - How message loss affects system behavior
-//   - The difference between unreliable and fair-loss links
+//   - Why fair-loss links alone are not enough for reliable delivery
 //   - Why reliable links matter for correctness
 //   - Safety properties that ALWAYS hold (no creation)
 //   - Liveness concerns when messages are lost
@@ -80,7 +80,7 @@ func RunCounter() {
 	fmt.Println("╔══════════════════════════════════════════════════════════════╗")
 	fmt.Println("║        EXAMPLE 2: COUNTER (Fair-Loss Link, 50% Loss)       ║")
 	fmt.Println("╠══════════════════════════════════════════════════════════════╣")
-	fmt.Println("║ Demonstrates: message loss with unreliable links, safety    ║")
+	fmt.Println("║ Demonstrates: message loss with fair-loss links, safety     ║")
 	fmt.Println("║ (no creation) vs liveness (reliable delivery) properties.   ║")
 	fmt.Println("╚══════════════════════════════════════════════════════════════╝")
 	fmt.Println()

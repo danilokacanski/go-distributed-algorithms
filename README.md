@@ -2,6 +2,16 @@
 
 This repository contains Go exercises and projects for learning distributed algorithms.
 
+## Repository Layout
+
+- `week01_02_foundations/`
+	- Go fundamentals labs and extra exercises.
+- `week03_04_basic_abstractions/`
+	- Single-threaded simulator for process/link/failure/crypto abstractions.
+	- Link stack: `Fair-Loss -> Stubborn -> Perfect -> Authenticated`.
+- `week03_04_parallel/`
+	- Parallel (goroutines/channels) version of the same abstractions.
+
 ## Setup Go in VS Code
 
 1. Install Go:
@@ -30,3 +40,19 @@ This repository contains Go exercises and projects for learning distributed algo
   - https://go.dev/doc/
 - Effective Go:
   - https://go.dev/doc/effective_go
+
+## Run Week 3-4 Simulators
+
+From the repository root:
+
+1. Basic abstractions (single-threaded):
+	 - `cd week03_04_basic_abstractions && go run .`
+2. Parallel version:
+	 - `cd week03_04_parallel && go run .`
+
+## Quick Validation
+
+- Build all packages in a module:
+	- `go build ./...`
+- Run tests in the parallel module:
+	- `cd week03_04_parallel && go test ./...`

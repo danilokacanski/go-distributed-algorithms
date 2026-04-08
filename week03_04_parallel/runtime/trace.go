@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/danilokacanski/da/week0203_parallel/process"
+	"github.com/danilokacanski/da/week03_04_parallel/process"
 )
 
 // EventType classifies trace events for analysis and display.

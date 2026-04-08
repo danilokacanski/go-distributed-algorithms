@@ -1,4 +1,4 @@
-// week0203_parallel - Teaching Simulator for Distributed Algorithms
+// week03_04_parallel - Teaching Simulator for Distributed Algorithms
 //
 // PARALLEL VERSION: Uses goroutines and channels instead of a
 // single-threaded step loop. Each process runs in its own goroutine.
@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/danilokacanski/da/week0203_parallel/examples"
+	"github.com/danilokacanski/da/week03_04_parallel/examples"
 )
 
 func main() {

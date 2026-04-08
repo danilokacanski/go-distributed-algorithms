@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/danilokacanski/da/week0203_parallel/failures"
-	"github.com/danilokacanski/da/week0203_parallel/link"
-	"github.com/danilokacanski/da/week0203_parallel/process"
+	"github.com/danilokacanski/da/week03_04_parallel/failures"
+	"github.com/danilokacanski/da/week03_04_parallel/link"
+	"github.com/danilokacanski/da/week03_04_parallel/process"
 )
 
 // ============================================================================

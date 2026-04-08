@@ -3,8 +3,8 @@ package link
 import (
 	"testing"
 
-	"github.com/danilokacanski/da/week0203_parallel/crypto"
-	"github.com/danilokacanski/da/week0203_parallel/process"
+	"github.com/danilokacanski/da/week03_04_parallel/crypto"
+	"github.com/danilokacanski/da/week03_04_parallel/process"
 )
 
 // ============================================================================

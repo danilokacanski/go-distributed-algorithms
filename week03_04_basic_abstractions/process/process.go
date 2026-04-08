@@ -21,9 +21,6 @@ package process
 //     all communication goes through the runtime scheduler.
 //  6. Handle() performs ONE ATOMIC STEP — no partial execution.
 //
-// This interface is the central abstraction that students will implement
-// for every distributed algorithm in this course.
-//
 // IMPORTANT: Handle must be DETERMINISTIC given the same state and message.
 // All nondeterminism (delivery order, losses) comes from the runtime/links.
 type Process interface {

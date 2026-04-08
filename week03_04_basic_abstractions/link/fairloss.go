@@ -3,11 +3,40 @@ package link
 import (
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
+// Link is the interface for all communication link abstractions.
+//
+// In the formal model, a link provides two events:
+//   - Send: process p requests to send message m to process q
+//   - Deliver: message m is delivered to process q
+//
+// In our simulator, the link layer sits between the runtime scheduler
+// and message delivery:
+//  1. Send() is called when a process produces an outgoing message
+//  2. Tick() is called each step to handle retransmissions
+//  3. Receive() is called before delivering to check dedup/auth
+type Link interface {
+	// Send processes an outgoing message. Returns messages to enqueue.
+	// May return:
+	//   - empty slice: message was lost/dropped
+	//   - single message: normal delivery
+	//   - multiple messages: duplication occurred
+	Send(msg process.Message, rng *rand.Rand) []process.Message
+
+	// Tick is called each scheduler step. Returns any retransmissions.
+	// Only meaningful for stubborn/higher links.
+	Tick(step int, rng *rand.Rand) []process.Message
+
+	// Receive checks if a message should be delivered.
+	// Returns (processed_message, should_deliver).
+	// Used for deduplication (perfect links) and authentication checks.
+	Receive(msg process.Message) (process.Message, bool)
+}
+
 // ============================================================================
-// FAIR-LOSS LINK (FLL)
+// FAIR-LOSS LINK (FLL, baseline)
 // ============================================================================
 
 // FairLossLink models the Fair-Loss Link abstraction.

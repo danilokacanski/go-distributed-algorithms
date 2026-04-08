@@ -1,4 +1,4 @@
-// week0203_basic_abstractions - Teaching Simulator for Distributed Algorithms
+// week03_04_basic_abstractions - Teaching Simulator for Distributed Algorithms
 //
 // This program demonstrates the basic abstractions from Chapter 2 of
 // Cachin, Guerraoui, Rodrigues: "Reliable and Secure Distributed Programming"
@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/examples"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/examples"
 )
 
 func main() {

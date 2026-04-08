@@ -11,9 +11,7 @@ package process
 //   - Private: no other process can read it
 //   - Volatile: lost on crash (unless using persistent storage)
 //   - Updated atomically during each Handle() step
-//
-// Students can use this helper or manage state directly in their
-// process implementations.
+
 type State struct {
 	store map[string]any
 }

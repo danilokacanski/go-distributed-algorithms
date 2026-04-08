@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/danilokacanski/da/week0203_parallel/process"
+	"github.com/danilokacanski/da/week03_04_parallel/process"
 )
 
 // ============================================================================

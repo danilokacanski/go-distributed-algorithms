@@ -3,7 +3,7 @@ package runtime
 import (
 	"fmt"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // EventType classifies trace events for analysis and display.

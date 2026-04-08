@@ -3,7 +3,7 @@ package failures
 import (
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // ============================================================================
@@ -29,7 +29,7 @@ import (
 // This is similar to link-level message loss (fair-loss link),
 // but the fault is at the PROCESS level, not the CHANNEL level.
 //
-// TEACHING NOTE: Omission failures are harder to detect than crashes
+// Omission failures are harder to detect than crashes
 // because the process appears to be running normally — it just misses
 // some messages. This is a realistic model for overloaded systems.
 type OmissionFailure struct {

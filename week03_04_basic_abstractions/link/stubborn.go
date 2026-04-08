@@ -3,7 +3,7 @@ package link
 import (
 	"math/rand"
 
-	"github.com/danilokacanski/da/week0203_basic_abstractions/process"
+	"github.com/danilokacanski/da/week03_04_basic_abstractions/process"
 )
 
 // ============================================================================
