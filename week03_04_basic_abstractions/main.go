@@ -32,12 +32,12 @@ func main() {
 	examples.RunPingPong()
 	fmt.Println()
 
-	examples.RunCounter()
-	fmt.Println()
+	// examples.RunCounter()
+	// fmt.Println()
 
-	examples.RunTamper()
+	// examples.RunTamper()
 
-	fmt.Println("================================================================")
-	fmt.Println("  All examples complete. Review the traces above.")
-	fmt.Println("================================================================")
+	// fmt.Println("================================================================")
+	// fmt.Println("  All examples complete. Review the traces above.")
+	// fmt.Println("================================================================")
 }
