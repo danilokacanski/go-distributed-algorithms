@@ -205,17 +205,21 @@ func (r *Runtime) makeSendFunc(ctx context.Context, pid process.ProcessID) func(
 			enqueued := r.link.Send(m)
 			for _, eq := range enqueued {
 				eqCopy := eq
-				r.trace.Log(Event{
-					Type:    EventEnqueue,
-					Message: &eqCopy,
-					Detail:  fmt.Sprintf("Enqueued: %s", eq.String()),
-				})
-
-				// Non-blocking send to network channel
+				// Place the message on the network channel first, then log ENQUEUE.
 				select {
 				case <-ctx.Done():
 					return
 				case r.network <- eqCopy:
+					// Log only after the message has been successfully enqueued
+					r.trace.Log(Event{
+						Type:    EventEnqueue,
+						Message: &eqCopy,
+						Detail:  fmt.Sprintf("Enqueued: %s", eq.String()),
+					})
+					// Update lastDelivery (activity) so the idle monitor sees progress.
+					// This prevents the idle monitor from cancelling the simulation
+					// while messages are queued but not yet delivered.
+					r.lastDelivery.Store(time.Now())
 				}
 			}
 		}
@@ -442,37 +446,51 @@ func (r *Runtime) Run() {
 	// Reset last delivery time
 	r.lastDelivery.Store(time.Now())
 
-	var wg sync.WaitGroup
+	// We'll coordinate goroutines so we can drain the network before exiting.
+	var wgProcesses sync.WaitGroup
+	var wgRouter sync.WaitGroup
+	var wgRetrans sync.WaitGroup
 
 	// Start process goroutines
 	for pid, entry := range r.processes {
-		wg.Add(1)
+		wgProcesses.Add(1)
 		sendFn := r.makeSendFunc(ctx, pid)
 		go func(e *procEntry, send func(process.Message)) {
-			defer wg.Done()
+			defer wgProcesses.Done()
 			e.proc.Run(ctx, e.inbox, send)
 		}(entry, sendFn)
 	}
 
 	// Start router goroutine
-	wg.Add(1)
+	wgRouter.Add(1)
 	go func() {
-		defer wg.Done()
+		defer wgRouter.Done()
 		r.routeMessages(ctx)
 	}()
 
-	// Start retransmitter goroutine
-	wg.Add(1)
+	// Start retransmitter goroutine with cancellable child context so we can stop it
+	retransCtx, retransCancel := context.WithCancel(ctx)
+	wgRetrans.Add(1)
 	go func() {
-		defer wg.Done()
-		r.retransmitLoop(ctx)
+		defer wgRetrans.Done()
+		r.retransmitLoop(retransCtx)
 	}()
 
 	// Start idle monitor (cancels context when idle)
 	go r.idleMonitor(ctx, cancel)
 
-	// Wait for all goroutines to finish
-	wg.Wait()
+	// Wait for all process goroutines to finish
+	wgProcesses.Wait()
+
+	// Stop retransmitter and wait for it to finish so it won't write to the network
+	retransCancel()
+	wgRetrans.Wait()
+
+	// Close the network channel to signal router to drain and exit
+	close(r.network)
+
+	// Wait for router to finish draining messages
+	wgRouter.Wait()
 
 	fmt.Printf("\n>>> Simulation ended.\n")
 

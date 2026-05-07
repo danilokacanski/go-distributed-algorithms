@@ -45,3 +45,6 @@ tmp/
 
 # Dependency directories (if any JS tooling appears)
 node_modules/
+
+# Temporary: ignore Go test files for now
+**/*_test.go
