@@ -29,14 +29,14 @@ func main() {
 	fmt.Println("================================================================")
 	fmt.Println()
 
-	examples.RunPingPong()
-	fmt.Println()
+	// examples.RunPingPong()
+	// fmt.Println()
 
 	// examples.RunCounter()
 	// fmt.Println()
 
-	// examples.RunTamper()
-	// fmt.Println()
+	examples.RunTamper()
+	fmt.Println()
 
 	// fmt.Println("================================================================")
 	// fmt.Println("  All examples complete. Review the traces above.")
